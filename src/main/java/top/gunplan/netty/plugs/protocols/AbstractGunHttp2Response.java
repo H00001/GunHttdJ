@@ -3,6 +3,8 @@ package top.gunplan.netty.plugs.protocols;
 import top.gunplan.netty.protocol.GunNetOutputInterface;
 import top.gunplan.netty.protocol.GunProtoclContorl;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author dosdrtt
  * @version 0.0.0.1
@@ -11,7 +13,12 @@ public abstract class AbstractGunHttp2Response implements GunNetOutputInterface,
 
     @Override
     public byte[] serialize() {
-        return getResponseBody().getBytes();
+        try {
+            return getResponseBody().getBytes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -19,5 +26,5 @@ public abstract class AbstractGunHttp2Response implements GunNetOutputInterface,
      *
      * @return response string
      */
-    public abstract String getResponseBody();
+    public abstract String getResponseBody() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, Exception;
 }

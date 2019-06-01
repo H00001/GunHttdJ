@@ -1,8 +1,7 @@
 package top.gunplan.netty.plugs.protocols;
 
-import top.gunplan.netty.common.GunNettyPropertyManagerImpl;
-import top.gunplan.netty.impl.propertys.GunNettyCoreProperty;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -16,7 +15,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
     protected BaseGunHttp2Response() {
         this.mmap.put("Server", "windows server iis 1998");
         this.mmap.put("Date", new Date().toString());
-        this.mmap.put("Connection", (GunNettyPropertyManagerImpl.coreProperty()).getConnection().getSVal());
+        this.mmap.put("Connection", "keep-alive");
         this.mmap.put("Accept-Ranges", "bytes");
         this.cookies.add(new GunHttpStdInfo.GunCookies("iisSession", UUID.randomUUID().toString()));
     }
@@ -79,7 +78,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
     }
 
     @Override
-    public String getResponseBody() {
+    public String getResponseBody() throws Exception {
         Map<String, String> httpHead = this.mmap;
         StringBuilder http2resp = new StringBuilder();
         http2resp.append(protoclType.getVal()).append(" ").append(code.getVal()).append(" ");
@@ -98,5 +97,5 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
         return http2resp.toString();
     }
 
-    public abstract String toResponse();
+    public abstract String toResponse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException;
 }

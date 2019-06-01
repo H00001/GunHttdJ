@@ -1,10 +1,10 @@
 package top.gunplan.netty.plugs.filter;
 
+import top.gunplan.netty.impl.GunNettyPropertyManagerImpl;
 import top.gunplan.netty.plugs.property.GunHttpProperty;
 import top.gunplan.netty.plugs.protocols.GunHttp2InputProtocl;
 import top.gunplan.netty.GunNettyFilter;
 import top.gunplan.netty.anno.GunNetFilterOrder;
-import top.gunplan.netty.common.GunNettyPropertyManagerImpl;
 import top.gunplan.netty.impl.GunInputFilterChecker;
 import top.gunplan.netty.impl.GunOutputFilterChecker;
 

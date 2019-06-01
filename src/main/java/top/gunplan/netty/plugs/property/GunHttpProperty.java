@@ -1,8 +1,10 @@
 package top.gunplan.netty.plugs.property;
 
 
+import top.gunplan.netty.GunProperty;
 import top.gunplan.netty.anno.GunPropertyMap;
-import top.gunplan.netty.impl.propertys.GunProperty;
+
+
 
 /**
  * @author dosdrtt
