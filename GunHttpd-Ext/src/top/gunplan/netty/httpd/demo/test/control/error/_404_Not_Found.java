@@ -1,4 +1,4 @@
-package top.gunplan.netty.httpd.demo.test.error;
+package top.gunplan.netty.httpd.demo.test.control.error;
 
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;

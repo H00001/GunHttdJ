@@ -1,4 +1,4 @@
-package top.gunplan.netty.httpd.demo.test;
+package top.gunplan.netty.httpd.demo.test.control;
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
@@ -15,6 +15,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @demo
+ * @author dosdrtt
+ */
 @GunHttpmapping(mappingRule = "/getBooks.gmh")
 public class GetBookS implements GunHttpMappingHandle<GunNetOutputInterface> {
 

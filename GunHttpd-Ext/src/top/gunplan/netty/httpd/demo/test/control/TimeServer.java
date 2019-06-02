@@ -1,4 +1,4 @@
-package top.gunplan.netty.httpd.demo.test;
+package top.gunplan.netty.httpd.demo.test.control;
 
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;

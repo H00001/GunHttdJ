@@ -4,7 +4,9 @@ import top.gunplan.netty.protocol.GunNetInputInterface;
 import top.gunplan.netty.protocol.GunNetOutputInterface;
 
 /**
- * @param <T>
+ * @param <T> extends GunNetOutputInterface
+ * @see GunNetOutputInterface
+ * @see GunHttpMappingHandle
  * @author dosdrtt
  */
 public interface GunHttpMappingHandle<T extends GunNetOutputInterface> {

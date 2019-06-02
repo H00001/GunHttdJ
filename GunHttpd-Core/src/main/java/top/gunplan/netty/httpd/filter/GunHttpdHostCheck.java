@@ -10,6 +10,8 @@ import top.gunplan.netty.impl.GunOutputFilterChecker;
 
 
 /**
+ * GunHttpdHostCheck
+ * the filter is used to host check contorl
  * @author dosdrtt
  */
 @GunNetFilterOrder(index = 2)
