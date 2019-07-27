@@ -1,12 +1,11 @@
 package top.gunplan.netty.httpd.protocols;
 
-import top.gunplan.netty.protocol.GunNetInputInterface;
-import top.gunplan.netty.protocol.GunNetOutputInterface;
+import top.gunplan.netty.impl.GunNetInBoundOutBound;
 
 /**
  * @author dosdrtt
  */
-public class GunStdString implements GunNetInputInterface, GunNetOutputInterface {
+public class GunStdString implements GunNetInBoundOutBound {
     private String value = null;
 
     @Override

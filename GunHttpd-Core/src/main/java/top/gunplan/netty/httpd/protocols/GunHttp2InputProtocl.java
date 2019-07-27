@@ -1,15 +1,16 @@
 package top.gunplan.netty.httpd.protocols;
 
-import top.gunplan.netty.protocol.GunNetInputInterface;
+import top.gunplan.netty.protocol.GunNetInbound;
 
 import java.util.HashMap;
 
 
 /**
  * GunHttp2InputProtocl
+ *
  * @author dosdrtt
  */
-final public class GunHttp2InputProtocl implements GunNetInputInterface {
+final public class GunHttp2InputProtocl implements GunNetInbound {
     public GunHttp2InputProtocl() {
 
     }
@@ -86,7 +87,7 @@ final public class GunHttp2InputProtocl implements GunNetInputInterface {
         var3310:
         if (requrl.contains("?")) {
             this.requestUrl = requrl.split("\\?")[0];
-            String parameters[];
+            String[] parameters;
             if (requrl.split("\\?")[1].contains("&")) {
                 parameters = requrl.split("&");
             } else {

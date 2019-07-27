@@ -1,9 +1,9 @@
 package top.gunplan.netty.httpd;
 
-import top.gunplan.netty.impl.GunNettyDefaultObserveImpl;
+import top.gunplan.netty.impl.GunNettyDefaultObserve;
 
 /**
  * @author dosdrtt
  */
-public class GunHttpdObserve extends GunNettyDefaultObserveImpl {
+public class GunHttpdObserve extends GunNettyDefaultObserve {
 }

@@ -78,7 +78,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
     }
 
     @Override
-    public String getResponseBody() throws Exception {
+    public String getResponseBody() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Map<String, String> httpHead = this.mmap;
         StringBuilder http2resp = new StringBuilder();
         http2resp.append(protoclType.getVal()).append(" ").append(code.getVal()).append(" ");

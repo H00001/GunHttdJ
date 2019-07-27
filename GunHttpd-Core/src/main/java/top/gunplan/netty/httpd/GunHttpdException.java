@@ -1,6 +1,7 @@
 package top.gunplan.netty.httpd;
 
 import top.gunplan.netty.GunException;
+import top.gunplan.netty.GunExceptionType;
 
 /**
  * @author dosdrtt
@@ -11,7 +12,7 @@ public class GunHttpdException extends GunException {
     private static final long serialVersionUID = -4519667691718155560L;
 
     public GunHttpdException(String why) {
-        super(why);
+        super(GunExceptionType.EXC1, why);
     }
 
     public GunHttpdException(Exception exp) {

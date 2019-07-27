@@ -1,6 +1,6 @@
 package top.gunplan.netty.httpd.protocols;
 
-import top.gunplan.netty.protocol.*;
+import top.gunplan.netty.impl.GunNetInBoundOutBound;
 import top.gunplan.utils.GunBytesUtil;
 
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  *
  */
-public abstract class AbstractGunRPCProtocl implements GunNetInputInterface, GunNetOutputInterface {
+public abstract class AbstractGunRPCProtocl implements GunNetInBoundOutBound {
 //    @Test
 //    public void test() {
 //        AbstractGunRPCProtocl it = new AbstractGunRPCProtocl();
