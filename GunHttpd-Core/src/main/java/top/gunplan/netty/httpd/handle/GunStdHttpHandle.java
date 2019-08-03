@@ -13,7 +13,7 @@ import top.gunplan.netty.httpd.property.GunHttpProperty;
 import top.gunplan.netty.httpd.protocols.AbstractGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocl;
 import top.gunplan.netty.protocol.GunNetInbound;
-import top.gunplan.netty.protocol.GunNetOutBound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 import top.gunplan.utils.GunDirectoryUtil;
 import top.gunplan.utils.GunLogger;
 import top.gunplan.utils.GunStringUtil;
@@ -90,7 +90,7 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
     }
 
     @Override
-    public GunNetOutBound dealDataEvent(GunNetInbound requestInterface) throws GunException {
+    public GunNetOutbound dealDataEvent(GunNetInbound requestInterface) throws GunException {
         GunHttp2InputProtocl request = ((GunHttp2InputProtocl) requestInterface);
         LOG.debug("request:" + request.getRequestUrl(), "[CONNECTION][HTTP]");
         GunHttpMappingHandle<AbstractGunHttp2Response> runner = null;
@@ -118,7 +118,6 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
             }
         }
         try {
-            //um.put(requestUrl, dealhandel);
             return dealhandel;
         } catch (Exception e) {
             throw new GunException(e);
@@ -127,7 +126,7 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
 
 
     @Override
-    public GunNetOutBound dealConnEvent(SocketAddress channel) throws GunException {
+    public GunNetOutbound dealConnEvent(SocketAddress channel) throws GunException {
         LOG.debug("connected....", "[CONNECTION]");
         return null;
     }

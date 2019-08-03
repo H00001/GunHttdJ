@@ -2,29 +2,29 @@ package top.gunplan.netty.httpd.demo.test.control;
 
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;
-import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
-import top.gunplan.netty.protocol.GunNetInputInterface;
-import top.gunplan.netty.protocol.GunNetOutputInterface;
-import top.gunplan.netty.protocol.resputil.GunMappingJsonResp;
+import top.gunplan.netty.protocol.GunNetInbound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 @GunHttpmapping(mappingRule = "/time")
-public class TimeServer implements GunHttpMappingHandle<GunNetOutputInterface> {
+public class TimeServer implements GunHttpMappingHandle<GunNetOutbound> {
     public TimeServer() {
     }
 
 
     @Override
-    public GunNetOutputInterface doOutput(GunNetInputInterface protocl) {
-        BaseGunHttp2Response response = new BaseGunHttp2Response() {
-            @Override
-            public String toResponse() {
-                GunMappingJsonResp resp = new GunMappingJsonResp();
-                resp.put("time", String.valueOf(System.currentTimeMillis()));
-                return resp.toTransfer();
-            }
-        };
-        response.setIswrite(true);
-        return response;
+    public GunNetOutbound doOutput(GunNetInbound protocl) {
+//        basegunhttp2response response = new basegunhttp2response() {
+//            @override
+//            public string toresponse() {
+//                gunmappingjsonresp resp = new gunmappingjsonresp();
+//                resp.put("time", string.valueof(system.currenttimemillis()));
+//                return resp.totransfer();
+//            }
+//        };
+//        response.setiswrite(true);
+        //     return response;
+
+        return null;
     }
 }

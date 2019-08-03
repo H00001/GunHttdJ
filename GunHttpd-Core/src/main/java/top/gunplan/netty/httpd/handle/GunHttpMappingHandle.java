@@ -1,7 +1,7 @@
 package top.gunplan.netty.httpd.handle;
 
 import top.gunplan.netty.protocol.GunNetInbound;
-import top.gunplan.netty.protocol.GunNetOutBound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 
 /**
@@ -10,11 +10,12 @@ import top.gunplan.netty.protocol.GunNetOutBound;
  * @see
  * @see GunNetInbound
  */
-public interface GunHttpMappingHandle<T extends GunNetOutBound> {
+public interface GunHttpMappingHandle<T extends GunNetOutbound> {
+
     /**
-     * @param protocl {@link GunNetInbound}
-     * @return {@link top.gunplan.netty.protocol.GunNetOutBound}
+     * @param protocol {@link GunNetInbound}
+     * @return {@link top.gunplan.netty.protocol.GunNetOutbound}
      */
-    T doOutput(GunNetInbound protocl);
+    T doOutput(GunNetInbound protocol);
 }
 

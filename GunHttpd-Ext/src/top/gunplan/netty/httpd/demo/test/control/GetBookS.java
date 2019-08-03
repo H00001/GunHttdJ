@@ -8,29 +8,26 @@ import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
 import top.gunplan.netty.httpd.util.GunHttpdJsonUtilFactory;
 import top.gunplan.netty.httpd.util.GunHttpdJsonUtilInterface;
 import top.gunplan.netty.protocol.GunNetInbound;
-import top.gunplan.netty.protocol.GunNetOutBound;
-import top.gunplan.netty.protocol.resputil.GunMappingJsonResp;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @demo
  * @author dosdrtt
  */
 @GunHttpmapping(mappingRule = "/getBooks.gmh")
-public class GetBookS implements GunHttpMappingHandle<GunNetOutBound> {
+public class GetBookS implements GunHttpMappingHandle<GunNetOutbound> {
 
     @Override
-    public GunNetOutBound doOutput(GunNetInbound protocl) {
+    public GunNetOutbound doOutput(GunNetInbound protocol) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
 
             @Override
             public String toResponse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
-                List<GunMappingJsonResp> resps = new ArrayList<>();
-                GunMappingJsonResp resp = new GunMappingJsonResp();
+//       //         List<GunMappingJsonResp> resps = new ArrayList<>();
+//       //         GunMappingJsonResp resp = new GunMappingJsonResp();
                 //connection db
 
 

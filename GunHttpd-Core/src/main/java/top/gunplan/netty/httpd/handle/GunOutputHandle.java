@@ -6,7 +6,7 @@ import top.gunplan.netty.GunNettyHandle;
 import top.gunplan.netty.common.GunNettyContext;
 import top.gunplan.netty.httpd.protocols.GunStdString;
 import top.gunplan.netty.protocol.GunNetInbound;
-import top.gunplan.netty.protocol.GunNetOutBound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 import java.net.SocketAddress;
 
@@ -17,16 +17,16 @@ public class GunOutputHandle implements GunNettyHandle {
 
 
     @Override
-    public GunNetOutBound dealDataEvent(GunNetInbound m) {
+    public GunNetOutbound dealDataEvent(GunNetInbound m) {
         if (m instanceof GunStdString) {
-            GunStdString httpProtocl = ((GunStdString) m);
-            GunNettyContext.logger.urgency(httpProtocl.getString());
+            GunStdString httpProtocol = ((GunStdString) m);
+            GunNettyContext.logger.urgency(httpProtocol.getString());
         }
         return null;
     }
 
     @Override
-    public GunNetOutBound dealConnEvent(SocketAddress socketAddress) throws GunException {
+    public GunNetOutbound dealConnEvent(SocketAddress socketAddress) throws GunException {
         return null;
     }
 

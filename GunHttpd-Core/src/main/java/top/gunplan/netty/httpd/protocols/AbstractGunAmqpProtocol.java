@@ -1,12 +1,12 @@
 package top.gunplan.netty.httpd.protocols;
 
 import top.gunplan.netty.protocol.GunNetInbound;
-import top.gunplan.netty.protocol.GunNetOutBound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 /**
  * @author dosdrtt
  */
-public abstract class AbstractGunAmqpProtocol implements BaseAmqp, GunNetInbound, GunNetOutBound {
+public abstract class AbstractGunAmqpProtocol implements BaseAmqp, GunNetInbound, GunNetOutbound {
     public enum Lengths {
         /**
          * type

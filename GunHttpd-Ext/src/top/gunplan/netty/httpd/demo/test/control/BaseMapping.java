@@ -1,21 +1,24 @@
 package top.gunplan.netty.httpd.demo.test.control;
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;
+import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
-import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
-import top.gunplan.netty.protocol.GunNetInputInterface;
-import top.gunplan.netty.protocol.GunNetOutputInterface;
+import top.gunplan.netty.protocol.GunNetInbound;
+import top.gunplan.netty.protocol.GunNetOutbound;
 
 
+/**
+ * @author dosdrtt
+ */
 @GunHttpmapping(mappingRule = "/index.aspx")
-public class BaseMapping implements GunHttpMappingHandle<GunNetOutputInterface> {
+public class BaseMapping implements GunHttpMappingHandle<GunNetOutbound> {
     public BaseMapping() {
 
     }
 
     @Override
-    public GunNetOutputInterface doOutput(GunNetInputInterface protocl) {
+    public GunNetOutbound doOutput(GunNetInbound protocl) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
             @Override
             public String toResponse() {
