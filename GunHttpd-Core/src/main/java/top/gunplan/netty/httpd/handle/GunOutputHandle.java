@@ -1,9 +1,9 @@
 package top.gunplan.netty.httpd.handle;
 
 import top.gunplan.netty.GunChannelException;
-import top.gunplan.netty.GunException;
-import top.gunplan.netty.GunNettyHandle;
+import top.gunplan.netty.GunNettyChildrenHandle;
 import top.gunplan.netty.common.GunNettyContext;
+import top.gunplan.netty.filter.GunNettyFilter;
 import top.gunplan.netty.httpd.protocols.GunStdString;
 import top.gunplan.netty.protocol.GunNetInbound;
 import top.gunplan.netty.protocol.GunNetOutbound;
@@ -13,7 +13,7 @@ import java.net.SocketAddress;
 /**
  * GunOutputHandle
  */
-public class GunOutputHandle implements GunNettyHandle {
+public class GunOutputHandle implements GunNettyChildrenHandle {
 
 
     @Override
@@ -25,20 +25,16 @@ public class GunOutputHandle implements GunNettyHandle {
         return null;
     }
 
+
+
     @Override
-    public GunNetOutbound dealConnEvent(SocketAddress socketAddress) throws GunException {
+    public void dealCloseEvent(SocketAddress socketAddress) {
+
+    }
+
+    @Override
+    public GunNettyFilter.DealResult dealExceptionEvent(GunChannelException e) {
         return null;
-    }
-
-
-    @Override
-    public void dealCloseEvent() {
-        GunNettyContext.logger.debug("CLOSED ");
-    }
-
-    @Override
-    public void dealExceptionEvent(GunChannelException e) {
-        GunNettyContext.logger.error(e);
     }
 
 

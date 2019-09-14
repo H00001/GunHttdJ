@@ -3,15 +3,16 @@ package top.gunplan.netty.httpd.handle;
 
 import top.gunplan.netty.GunChannelException;
 import top.gunplan.netty.GunException;
-import top.gunplan.netty.GunNettyHandle;
+import top.gunplan.netty.GunNettyChildrenHandle;
 import top.gunplan.netty.GunNettySystemServices;
 import top.gunplan.netty.common.GunNettyContext;
+import top.gunplan.netty.filter.GunNettyFilter;
 import top.gunplan.netty.httpd.GunHttpdException;
 import top.gunplan.netty.httpd.anno.GunHttpBaseContent;
 import top.gunplan.netty.httpd.anno.GunHttpmapping;
 import top.gunplan.netty.httpd.property.GunHttpProperty;
 import top.gunplan.netty.httpd.protocols.AbstractGunHttp2Response;
-import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocl;
+import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
 import top.gunplan.netty.protocol.GunNetInbound;
 import top.gunplan.netty.protocol.GunNetOutbound;
 import top.gunplan.utils.GunDirectoryUtil;
@@ -31,12 +32,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * this class need to rely on {@link GunHttp2InputProtocl}
+ * this class need to rely on {@link GunHttp2InputProtocol}
  *
  * @author dosdrtt
  */
 
-public class GunStdHttpHandle implements GunNettyHandle, Runnable {
+public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
     private static final GunLogger LOG = GunNettyContext.logger;
     private final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> um = new ConcurrentHashMap<>();
     private final ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
@@ -56,7 +57,7 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
             try {
                 /**
                  *
-                 * warning：It could be inside class in Mappingclass with out GunHttpmapping Annotation(
+                 * warning：It could be inside class in Mapping class with out GunHttp mapping Annotation(
                  */
                 hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(handlePackName + classname.getBase() + classname.getClcasfile().getName().replace(".class", ""));
                 if (hm.isAnnotationPresent(GunHttpmapping.class)) {
@@ -91,7 +92,7 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
 
     @Override
     public GunNetOutbound dealDataEvent(GunNetInbound requestInterface) throws GunException {
-        GunHttp2InputProtocl request = ((GunHttp2InputProtocl) requestInterface);
+        GunHttp2InputProtocol request = ((GunHttp2InputProtocol) requestInterface);
         LOG.debug("request:" + request.getRequestUrl(), "[CONNECTION][HTTP]");
         GunHttpMappingHandle<AbstractGunHttp2Response> runner = null;
         try {
@@ -125,22 +126,17 @@ public class GunStdHttpHandle implements GunNettyHandle, Runnable {
     }
 
 
-    @Override
-    public GunNetOutbound dealConnEvent(SocketAddress channel) throws GunException {
-        LOG.debug("connected....", "[CONNECTION]");
-        return null;
-    }
 
     @Override
-    public void dealCloseEvent() {
+    public void dealCloseEvent(SocketAddress socketAddress) {
         LOG.debug("CLOSED");
     }
 
     @Override
-    public void dealExceptionEvent(GunChannelException exp) {
-        LOG.error(exp);
-
+    public GunNettyFilter.DealResult dealExceptionEvent(GunChannelException e) {
+        return null;
     }
+
 
     @Override
     public void run() {

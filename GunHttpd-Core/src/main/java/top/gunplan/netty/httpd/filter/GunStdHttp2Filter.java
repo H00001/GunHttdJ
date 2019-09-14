@@ -1,31 +1,25 @@
 package top.gunplan.netty.httpd.filter;
 
-import top.gunplan.netty.GunChannelException;
-import top.gunplan.netty.GunNettyFilter;
 import top.gunplan.netty.anno.GunNetFilterOrder;
-import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocl;
-import top.gunplan.netty.impl.GunNettyInputFilterChecker;
-import top.gunplan.netty.impl.GunNettyOutputFilterChecker;
+import top.gunplan.netty.filter.GunNettyInboundFilter;
+import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
+import top.gunplan.netty.impl.checker.GunInboundChecker;
 
 /**
  * @author dosdrtt
  */
 @GunNetFilterOrder(index = 1)
-public class GunStdHttp2Filter implements GunNettyFilter {
+public class GunStdHttp2Filter implements GunNettyInboundFilter {
     @Override
-    public DealResult doInputFilter(GunNettyInputFilterChecker filterDto) {
-        GunHttp2InputProtocl protocl = new GunHttp2InputProtocl();
-        if (protocl.unSerialize(filterDto.source())) {
-            filterDto.setTransfer(protocl);
+    public DealResult doInputFilter(GunInboundChecker filterDto) {
+        GunHttp2InputProtocol protocol = new GunHttp2InputProtocol();
+        if (protocol.unSerialize(filterDto.source())) {
+            filterDto.setTransfer(protocol);
             return DealResult.NEXT;
         } else {
-            return DealResult.NOTDEALALLNEXT;
+            filterDto.channel().closeAndRemove(true);
+            return DealResult.CLOSED;
         }
     }
 
-
-    @Override
-    public DealResult doOutputFilter(GunNettyOutputFilterChecker gunNettyOutputFilterChecker) throws GunChannelException {
-        return DealResult.NEXT;
-    }
 }

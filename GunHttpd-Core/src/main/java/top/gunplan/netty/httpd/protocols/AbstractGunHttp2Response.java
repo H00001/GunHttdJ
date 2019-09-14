@@ -2,7 +2,6 @@ package top.gunplan.netty.httpd.protocols;
 
 import top.gunplan.netty.common.GunNettyContext;
 import top.gunplan.netty.protocol.GunNetOutbound;
-import top.gunplan.netty.protocol.GunProtoclContorl;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -10,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
  * @author dosdrtt
  * @version 0.0.0.2
  */
-public abstract class AbstractGunHttp2Response implements GunNetOutbound, GunProtoclContorl {
+public abstract class AbstractGunHttp2Response implements GunNetOutbound {
 
     @Override
     public byte[] serialize() {

@@ -6,12 +6,12 @@ import java.util.HashMap;
 
 
 /**
- * GunHttp2InputProtocl
+ * GunHttp2InputProtocol
  *
  * @author dosdrtt
  */
-final public class GunHttp2InputProtocl implements GunNetInbound {
-    public GunHttp2InputProtocl() {
+final public class GunHttp2InputProtocol implements GunNetInbound {
+    public GunHttp2InputProtocol() {
 
     }
 

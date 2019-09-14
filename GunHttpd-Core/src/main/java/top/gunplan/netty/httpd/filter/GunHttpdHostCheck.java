@@ -1,12 +1,13 @@
 package top.gunplan.netty.httpd.filter;
 
-import top.gunplan.netty.GunNettyFilter;
+
+import top.gunplan.netty.GunChannelException;
 import top.gunplan.netty.GunNettySystemServices;
 import top.gunplan.netty.anno.GunNetFilterOrder;
+import top.gunplan.netty.filter.GunNettyInboundFilter;
 import top.gunplan.netty.httpd.property.GunHttpProperty;
-import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocl;
-import top.gunplan.netty.impl.GunNettyInputFilterChecker;
-import top.gunplan.netty.impl.GunNettyOutputFilterChecker;
+import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
+import top.gunplan.netty.impl.checker.GunInboundChecker;
 
 
 /**
@@ -16,16 +17,12 @@ import top.gunplan.netty.impl.GunNettyOutputFilterChecker;
  * @author dosdrtt
  */
 @GunNetFilterOrder(index = 2)
-public class GunHttpdHostCheck implements GunNettyFilter {
+public class GunHttpdHostCheck implements GunNettyInboundFilter {
 
     @Override
-    public DealResult doInputFilter(GunNettyInputFilterChecker filterDto) {
-        GunHttp2InputProtocl httpmessage = (GunHttp2InputProtocl) filterDto.getTransfer();
-        return httpmessage.getRequstHead().get("Host").equals((GunNettySystemServices.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class)).getHttphost()) ? DealResult.NEXT : DealResult.NOTDEALALLNEXT;
-    }
-
-    @Override
-    public DealResult doOutputFilter(GunNettyOutputFilterChecker filterDto) {
-        return DealResult.NEXT;
+    public DealResult doInputFilter(GunInboundChecker inboundChecker) throws GunChannelException {
+        GunHttp2InputProtocol httpMessage = (GunHttp2InputProtocol) inboundChecker.transferTarget();
+        return httpMessage.getRequstHead().get("Host").equals((GunNettySystemServices.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class)).getHttphost()) ?
+                DealResult.NEXT : DealResult.CLOSED;
     }
 }

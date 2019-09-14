@@ -56,10 +56,6 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
         this.contentType = contentType;
     }
 
-    @Override
-    public boolean isReturn() {
-        return iswrite;
-    }
 
     public boolean isIswrite() {
         return iswrite;
