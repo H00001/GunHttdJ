@@ -9,8 +9,7 @@ import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
 import top.gunplan.netty.protocol.GunNetInbound;
 
 @GunHttpmapping(mappingRule = "/*")
-public class _404_Not_Found implements GunHttpMappingHandle<AbstractGunHttp2Response> {
-
+public class NotFoundPage implements GunHttpMappingHandle<AbstractGunHttp2Response> {
 
     @Override
     public AbstractGunHttp2Response doOutput(GunNetInbound protocl) {
@@ -28,8 +27,7 @@ public class _404_Not_Found implements GunHttpMappingHandle<AbstractGunHttp2Resp
                         "</html>";
             }
         };
-        response.setIswrite(true);
-        response.setProtoclType(GunHttpStdInfo.HttpProtoclType.HTTP1_1);
+        response.setProtocolType(GunHttpStdInfo.HttpProtoclType.HTTP1_1);
         response.setContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
         response.setCode(GunHttpStdInfo.statusCode.CLIENT_ERROR);
         return response;

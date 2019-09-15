@@ -5,7 +5,7 @@ import top.gunplan.netty.httpd.util.GunHttpdObjectCanRefToJson;
 
 public class Gmh implements GunHttpdObjectCanRefToJson {
     @GunHttpdRefToJsonInfo(canToJson = false)
-    String Type= "123";
+    String type = "123";
     @GunHttpdRefToJsonInfo(canToJson = true, jsonKey = "pcb")
-    String Val = "ddd";
+    String val = "ddd";
 }

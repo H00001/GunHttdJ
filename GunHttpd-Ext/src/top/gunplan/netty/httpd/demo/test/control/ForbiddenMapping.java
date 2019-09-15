@@ -21,9 +21,8 @@ public class ForbiddenMapping implements GunHttpMappingHandle<GunNetOutbound> {
                 return "<h1>403 forbidden</h1><hr/><center>windows server iis 1998</center>";
             }
         };
-        response.setIswrite(true);
         response.setCode(GunHttpStdInfo.statusCode.FORBIDDEN);
-        response.setProtoclType(GunHttpStdInfo.HttpProtoclType.HTTP2_0);
+        response.setProtocolType(GunHttpStdInfo.HttpProtoclType.HTTP2_0);
         response.setContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
         return response;
     }

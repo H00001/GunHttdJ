@@ -22,7 +22,6 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
 
     private Map<String, String> mmap = new HashMap<>(4);
     private List<GunHttpStdInfo.GunCookies> cookies = new ArrayList<>(1);
-    private boolean iswrite;
 
     public Map<String, String> getMmap() {
         return mmap;
@@ -36,7 +35,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
         return protoclType;
     }
 
-    public void setProtoclType(GunHttpStdInfo.HttpProtoclType protoclType) {
+    public void setProtocolType(GunHttpStdInfo.HttpProtoclType protoclType) {
         this.protoclType = protoclType;
     }
 
@@ -54,15 +53,6 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
 
     public void setContentType(GunHttpStdInfo.ContentType contentType) {
         this.contentType = contentType;
-    }
-
-
-    public boolean isIswrite() {
-        return iswrite;
-    }
-
-    public void setIswrite(boolean iswrite) {
-        this.iswrite = iswrite;
     }
 
     public List<GunHttpStdInfo.GunCookies> getCookies() {
