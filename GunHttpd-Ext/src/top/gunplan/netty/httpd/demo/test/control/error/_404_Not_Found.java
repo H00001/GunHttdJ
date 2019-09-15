@@ -11,6 +11,7 @@ import top.gunplan.netty.protocol.GunNetInbound;
 @GunHttpmapping(mappingRule = "/*")
 public class _404_Not_Found implements GunHttpMappingHandle<AbstractGunHttp2Response> {
 
+
     @Override
     public AbstractGunHttp2Response doOutput(GunNetInbound protocl) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
@@ -21,7 +22,7 @@ public class _404_Not_Found implements GunHttpMappingHandle<AbstractGunHttp2Resp
                         "<head>" +
                         "</head>" +
                         "<body>" +
-                        "<h1>404 n0t found</h1>" +
+                        "<h1>love mcw</h1>" +
                         "" +
                         "</body>" +
                         "</html>";
@@ -30,7 +31,7 @@ public class _404_Not_Found implements GunHttpMappingHandle<AbstractGunHttp2Resp
         response.setIswrite(true);
         response.setProtoclType(GunHttpStdInfo.HttpProtoclType.HTTP1_1);
         response.setContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
-        response.setCode(GunHttpStdInfo.statusCode.NOTFOUND);
+        response.setCode(GunHttpStdInfo.statusCode.CLIENT_ERROR);
         return response;
     }
 }

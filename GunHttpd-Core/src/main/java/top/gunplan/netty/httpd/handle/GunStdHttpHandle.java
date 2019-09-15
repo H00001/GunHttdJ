@@ -39,9 +39,10 @@ import java.util.concurrent.TimeUnit;
 
 public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
     private static final GunLogger LOG = GunNettyContext.logger;
-    private final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> um = new ConcurrentHashMap<>();
+    private static final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> um = new ConcurrentHashMap<>();
     private final ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
 
+    @SuppressWarnings("unchecked")
     private void scanLoop() throws IOException {
         URL url = this.getClass().getResource("");
         final URLClassLoader loader = new URLClassLoader(new URL[]{url});
@@ -56,8 +57,7 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
             Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>> hm;
             try {
                 /**
-                 *
-                 * warning：It could be inside class in Mapping class with out GunHttp mapping Annotation(
+                 * warning：It could be inside class in Mapping class with out GunHttp mapping Annotation
                  */
                 hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(handlePackName + classname.getBase() + classname.getClcasfile().getName().replace(".class", ""));
                 if (hm.isAnnotationPresent(GunHttpmapping.class)) {
@@ -87,7 +87,6 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
 
     public GunStdHttpHandle() {
         //  loadServicesTest();
-
     }
 
     @Override
@@ -124,7 +123,6 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
             throw new GunException(e);
         }
     }
-
 
 
     @Override

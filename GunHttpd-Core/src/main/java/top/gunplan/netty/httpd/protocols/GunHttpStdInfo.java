@@ -63,7 +63,7 @@ public final class GunHttpStdInfo {
         /**
          *
          */
-        GET("GET"), POST("POST"), DELETE("DELETE"), PUT("PUT"), HEAD("HEAD");;
+        GET("GET"), POST("POST"), DELETE("DELETE"), PUT("PUT"), HEAD("HEAD");
         private String val;
 
         GunHttpRequestType(String val) {
@@ -114,7 +114,12 @@ public final class GunHttpStdInfo {
         /**
          *
          */
-        OK(200), FORBIDDEN(403), NOTFOUND(404);
+        OK(200),
+        MOVED(303),
+        CLIENT_ERROR(400),
+        FORBIDDEN(403),
+        NOT_FOUND(404),
+        SERVER_ERROR(500);
         private int val;
 
         statusCode(int val) {

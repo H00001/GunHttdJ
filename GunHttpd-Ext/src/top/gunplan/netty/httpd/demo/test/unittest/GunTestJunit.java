@@ -23,15 +23,21 @@ public class GunTestJunit {
         GunNettySystemServices.PROPERTY_MANAGER.setStrategy(new GunGetPropertyFromBaseFile());
         GunNettySystemServices.PROPERTY_MANAGER.registerProperty(new GunHttpProperty());
         GunBootServer server = GunBootServerFactory.newInstance();
-        server.setExecutors(100, 100).registerObserve(new GunHttpdObserve())
-                .onHasChannel(ch -> ch.addDataFilter(new GunNettyStdFirstFilter()).
-                        addDataFilter(new GunStdHttp2Filter()).
-                        setHandle(new GunStdHttpHandle()));
+        server.setExecutors(100, 100)
+                .registerObserve(new GunHttpdObserve())
+                .onHasChannel(ch -> ch
+                        .addDataFilter(new GunNettyStdFirstFilter())
+                        .addDataFilter(new GunStdHttp2Filter())
+                        .setHandle(new GunStdHttpHandle())
+                );
         try {
+            server.setSyncType(false);
             int val = server.sync();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("waiting");
     }
+
 
 }
