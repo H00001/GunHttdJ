@@ -4,6 +4,7 @@ import top.gunplan.netty.httpd.anno.GunHttpmapping;
 
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
+import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
 import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
 import top.gunplan.netty.httpd.util.GunHttpdJsonUtilFactory;
 import top.gunplan.netty.httpd.util.GunHttpdJsonUtilInterface;
@@ -20,7 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 public class GetBooks implements GunHttpMappingHandle<GunNetOutbound> {
 
     @Override
-    public GunNetOutbound doOutput(GunNetInbound protocol) {
+    public GunNetOutbound doOutput(GunHttp2InputProtocol protocol) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
 
             @Override

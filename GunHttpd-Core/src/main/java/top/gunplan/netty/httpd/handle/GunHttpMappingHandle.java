@@ -1,5 +1,6 @@
 package top.gunplan.netty.httpd.handle;
 
+import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
 import top.gunplan.netty.protocol.GunNetInbound;
 import top.gunplan.netty.protocol.GunNetOutbound;
 
@@ -16,6 +17,6 @@ public interface GunHttpMappingHandle<T extends GunNetOutbound> {
      * @param protocol {@link GunNetInbound}
      * @return {@link top.gunplan.netty.protocol.GunNetOutbound}
      */
-    T doOutput(GunNetInbound protocol);
+    T doOutput(GunHttp2InputProtocol protocol);
 }
 
