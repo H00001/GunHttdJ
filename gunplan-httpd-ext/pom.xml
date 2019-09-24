@@ -6,13 +6,8 @@
 
     <groupId>top.gunplan</groupId>
     <artifactId>gunplan-httpd-ext</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
-    <parent>
-        <groupId>top.gunplan</groupId>
-        <artifactId>gunplan-httpj-core</artifactId>
-        <version>1.1-SNAPSHOT</version>
-    </parent>
     <dependencies>
         <dependency>
             <groupId>top.gunplan</groupId>
@@ -21,12 +16,14 @@
         </dependency>
     </dependencies>
 
+
+
     <build>
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
         <resources>
             <resource>
-                <directory>GunHttpd-Ext/res</directory>
+                <directory>res</directory>
                 <includes>
                     <include>**/*.*</include>
                 </includes>
