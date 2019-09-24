@@ -5,15 +5,10 @@ import top.gunplan.netty.httpd.anno.GunHttpmapping;
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
-import top.gunplan.netty.protocol.GunNetInbound;
 import top.gunplan.netty.protocol.GunNetOutbound;
 
 @GunHttpmapping(mappingRule = "/time")
 public class TimeServer implements GunHttpMappingHandle<GunNetOutbound> {
-    public TimeServer() {
-    }
-
-
     @Override
     public GunNetOutbound doOutput(GunHttp2InputProtocol protocol) {
         return new BaseGunHttp2Response() {
