@@ -1,7 +1,7 @@
 package top.gunplan.netty.httpd.demo.test.control;
 
 import top.gunplan.netty.httpd.anno.GunHttpmapping;
-import top.gunplan.netty.httpd.demo.test.dto.Gmh;
+
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;

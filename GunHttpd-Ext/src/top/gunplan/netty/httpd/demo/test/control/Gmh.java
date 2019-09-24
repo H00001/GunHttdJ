@@ -1,4 +1,4 @@
-package top.gunplan.netty.httpd.demo.test.dto;
+package top.gunplan.netty.httpd.demo.test.control;
 
 import top.gunplan.netty.httpd.anno.GunHttpdRefToJsonInfo;
 import top.gunplan.netty.httpd.util.GunHttpdObjectCanRefToJson;

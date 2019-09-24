@@ -22,6 +22,16 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>GunHttpd-Ext/src</sourceDirectory>
+        <testSourceDirectory>GunHttpd-Ext/test</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>GunHttpd-Ext/res</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
