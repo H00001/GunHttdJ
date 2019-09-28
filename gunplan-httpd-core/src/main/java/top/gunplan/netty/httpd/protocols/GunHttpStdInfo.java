@@ -140,7 +140,7 @@ public final class GunHttpStdInfo {
         /**
          *
          */
-        TEXT_HTML("text/html"), TEXT_JSON("text/json"), TEXT_PLAIN("text/plain");
+        TEXT_HTML("text/html"), APPLICATION_JSON("application/json"), TEXT_JSON("text/json"), TEXT_PLAIN("text/plain");
         private String val;
 
         ContentType(String val) {

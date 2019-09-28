@@ -31,7 +31,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
         this.mmap = mmap;
     }
 
-    public GunHttpStdInfo.HttpProtoclType getProtoclType() {
+    public GunHttpStdInfo.HttpProtoclType getProtocolType() {
         return protoclType;
     }
 

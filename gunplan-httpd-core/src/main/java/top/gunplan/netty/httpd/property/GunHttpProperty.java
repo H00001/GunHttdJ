@@ -13,14 +13,14 @@ import top.gunplan.netty.anno.GunPropertyMap;
 public class GunHttpProperty implements GunProperty {
     private String scannPacket = null;
 
-    private String httphost = null;
+    private String httpHost = null;
 
-    public String getScannPacket() {
+    public String getScanPacket() {
         return scannPacket;
     }
 
-    public String getHttphost() {
-        return httphost;
+    public String getHttpHost() {
+        return httpHost;
     }
 
     public GunHttpProperty() {

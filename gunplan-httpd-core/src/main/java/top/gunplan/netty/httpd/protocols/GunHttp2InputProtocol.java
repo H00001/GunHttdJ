@@ -20,7 +20,7 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
     }
 
     private String requestBody;
-    private HashMap<String, String> requstHead = new HashMap<>();
+    private HashMap<String, String> requestHead = new HashMap<>();
     private HashMap<String, String> http2Parameters = new HashMap<>(2);
 
     public String getRequestBody() {
@@ -35,12 +35,12 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
 
     private GunHttpStdInfo.GunHttpRequestType method;
 
-    public HashMap<String, String> getRequstHead() {
-        return requstHead;
+    public HashMap<String, String> getRequestHead() {
+        return requestHead;
     }
 
-    public void setRequstHead(HashMap<String, String> requstHead) {
-        this.requstHead = requstHead;
+    public void setRequestHead(HashMap<String, String> requestHead) {
+        this.requestHead = requestHead;
     }
 
     public GunHttpStdInfo.GunHttpRequestType getMethod() {
@@ -65,7 +65,7 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
             int spiltpoint = httpconetnt.indexOf("\r\n\r\n");
             this.analyzingHttpHead(httpconetnt.substring(postion + 2, spiltpoint).split("\r\n"));
             if (this.method == GunHttpStdInfo.GunHttpRequestType.POST) {
-                functionToDealPostMethod();
+                functionToDealPostMethod(httpconetnt.substring(spiltpoint + 4));
             }
             return true;
         } catch (Exception e) {
@@ -75,9 +75,8 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
     }
 
 
-    private void functionToDealPostMethod() {
-
-
+    private void functionToDealPostMethod(final String body) {
+        this.requestBody = body;
     }
 
     private void analyzingHttpHeadFirst(final String httpHeadFirst) {
@@ -106,7 +105,7 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
 
     private void analyzingHttpHead(String[] httphead) {
         for (String eachhead : httphead) {
-            requstHead.put(eachhead.split(":")[0].trim(), eachhead.split(":")[1].trim());
+            requestHead.put(eachhead.split(":")[0].trim(), eachhead.split(":")[1].trim());
         }
     }
 }

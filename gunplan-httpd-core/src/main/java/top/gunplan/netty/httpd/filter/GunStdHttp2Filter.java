@@ -12,9 +12,7 @@ import top.gunplan.netty.impl.checker.GunInboundChecker;
 public class GunStdHttp2Filter implements GunNettyInboundFilter {
     @Override
     public DealResult doInputFilter(GunInboundChecker filterDto) {
-        GunHttp2InputProtocol protocol = new GunHttp2InputProtocol();
-        if (protocol.unSerialize(filterDto.source())) {
-            filterDto.setTransfer(protocol);
+        if (filterDto.tranToObject(GunHttp2InputProtocol.class)) {
             return DealResult.NEXT;
         } else {
             filterDto.channel().closeAndRemove(true);
