@@ -2,7 +2,9 @@ package top.gunplan.netty.httpd.protocols;
 
 import top.gunplan.netty.protocol.GunNetInbound;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -11,6 +13,12 @@ import java.util.HashMap;
  * @author dosdrtt
  */
 final public class GunHttp2InputProtocol implements GunNetInbound {
+    private String requestBody;
+    private Map<String, String> requestBodyMap = new HashMap<>();
+    private HashMap<String, String> requestHead = new HashMap<>();
+    private HashMap<String, String> http2Parameters = new HashMap<>(2);
+
+
     public GunHttp2InputProtocol() {
 
     }
@@ -19,9 +27,6 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
         return http2Parameters.get(name);
     }
 
-    private String requestBody;
-    private HashMap<String, String> requestHead = new HashMap<>();
-    private HashMap<String, String> http2Parameters = new HashMap<>(2);
 
     public String getRequestBody() {
         return requestBody;
@@ -43,6 +48,15 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
         this.requestHead = requestHead;
     }
 
+    public Map<String, String> bodyMapToMap() {
+        String[] params = requestBody.split("&");
+        Arrays.asList(params).forEach(c -> {
+            requestBodyMap.put(c.split("=")[0], c.split("=")[1]);
+        });
+        return requestBodyMap;
+    }
+
+
     public GunHttpStdInfo.GunHttpRequestType getMethod() {
         return method;
     }
@@ -59,13 +73,13 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
     @Override
     public boolean unSerialize(byte[] in) {
         try {
-            String httpconetnt = new String(in);
-            int postion = httpconetnt.indexOf("\r\n");
-            this.analyzingHttpHeadFirst(httpconetnt.substring(0, postion));
-            int spiltpoint = httpconetnt.indexOf("\r\n\r\n");
-            this.analyzingHttpHead(httpconetnt.substring(postion + 2, spiltpoint).split("\r\n"));
+            String httpContent = new String(in);
+            int position = httpContent.indexOf("\r\n");
+            this.analyzingHttpHeadFirst(httpContent.substring(0, position));
+            int spiltPoint = httpContent.indexOf("\r\n\r\n");
+            this.analyzingHttpHead(httpContent.substring(position + 2, spiltPoint).split("\r\n"));
             if (this.method == GunHttpStdInfo.GunHttpRequestType.POST) {
-                functionToDealPostMethod(httpconetnt.substring(spiltpoint + 4));
+                functionToDealPostMethod(httpContent.substring(spiltPoint + 4));
             }
             return true;
         } catch (Exception e) {
@@ -82,30 +96,30 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
     private void analyzingHttpHeadFirst(final String httpHeadFirst) {
         final String[] block = httpHeadFirst.split(" ");
         this.method = GunHttpStdInfo.GunHttpRequestType.getType(block[0]);
-        String requrl = block[1];
+        String reqUrl = block[1];
         var3310:
-        if (requrl.contains("?")) {
-            this.requestUrl = requrl.split("\\?")[0];
+        if (reqUrl.contains("?")) {
+            this.requestUrl = reqUrl.split("\\?")[0];
             String[] parameters;
-            if (requrl.split("\\?")[1].contains("&")) {
-                parameters = requrl.split("&");
+            if (reqUrl.split("\\?")[1].contains("&")) {
+                parameters = reqUrl.split("&");
             } else {
                 parameters = new String[1];
-                parameters[0] = requrl.split("\\?")[1];
+                parameters[0] = reqUrl.split("\\?")[1];
             }
             for (String parameter : parameters) {
                 http2Parameters.put(parameter.split("=")[0], parameter.split("=")[1]);
             }
 
         } else {
-            this.requestUrl = requrl;
+            this.requestUrl = reqUrl;
         }
     }
 
 
     private void analyzingHttpHead(String[] httphead) {
-        for (String eachhead : httphead) {
-            requestHead.put(eachhead.split(":")[0].trim(), eachhead.split(":")[1].trim());
+        for (String eachHead : httphead) {
+            requestHead.put(eachHead.split(":")[0].trim(), eachHead.split(":")[1].trim());
         }
     }
 }
