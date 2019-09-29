@@ -16,6 +16,5 @@ enum HTTP_TYPE {
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GunHttpmapping {
     String mappingRule();
-
     HTTP_TYPE type() default HTTP_TYPE.GET;
 }
