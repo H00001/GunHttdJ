@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 enum HTTP_TYPE {
     /**
+     * GET
+     * POST
      *
      */
     GET, POST, PUT, HEAD, DELETE
@@ -14,7 +16,7 @@ enum HTTP_TYPE {
 
 @Target(value = ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface GunHttpmapping {
+public @interface GunHttpMapping {
     String mappingRule();
     HTTP_TYPE type() default HTTP_TYPE.GET;
 }

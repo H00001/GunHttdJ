@@ -14,6 +14,8 @@ import top.gunplan.netty.protocol.GunNetOutbound;
 public interface GunHttpMappingHandle<T extends GunNetOutbound> {
 
     /**
+     * doOutput
+     *
      * @param protocol {@link GunNetInbound}
      * @return {@link top.gunplan.netty.protocol.GunNetOutbound}
      */

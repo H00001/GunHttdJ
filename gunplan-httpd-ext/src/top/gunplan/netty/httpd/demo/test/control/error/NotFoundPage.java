@@ -1,15 +1,14 @@
 package top.gunplan.netty.httpd.demo.test.control.error;
 
 
-import top.gunplan.netty.httpd.anno.GunHttpmapping;
+import top.gunplan.netty.httpd.anno.GunHttpMapping;
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
 import top.gunplan.netty.httpd.protocols.AbstractGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
 import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
-import top.gunplan.netty.protocol.GunNetInbound;
 
-@GunHttpmapping(mappingRule = "/*")
+@GunHttpMapping(mappingRule = "/*")
 public class NotFoundPage implements GunHttpMappingHandle<AbstractGunHttp2Response> {
 
     @Override

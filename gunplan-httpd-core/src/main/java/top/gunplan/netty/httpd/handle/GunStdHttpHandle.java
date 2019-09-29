@@ -10,7 +10,7 @@ import top.gunplan.netty.common.GunNettyExecutors;
 import top.gunplan.netty.filter.GunNettyFilter;
 import top.gunplan.netty.httpd.GunHttpdException;
 import top.gunplan.netty.httpd.anno.GunHttpBaseContent;
-import top.gunplan.netty.httpd.anno.GunHttpmapping;
+import top.gunplan.netty.httpd.anno.GunHttpMapping;
 import top.gunplan.netty.httpd.property.GunHttpProperty;
 import top.gunplan.netty.httpd.protocols.AbstractGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
@@ -60,9 +60,9 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
                  * warning：It could be inside class in Mapping class with out GunHttp mapping Annotation
                  */
                 hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(handlePackName + classname.getBase() + classname.getClcasfile().getName().replace(".class", ""));
-                if (hm.isAnnotationPresent(GunHttpmapping.class)) {
-                    um.put(hm.isAnnotationPresent(GunHttpBaseContent.class) ? hm.getAnnotation(GunHttpBaseContent.class).baseContent() + hm.getAnnotation(GunHttpmapping.class).mappingRule()
-                            : hm.getAnnotation(GunHttpmapping.class).mappingRule(), hm.getDeclaredConstructor().newInstance());
+                if (hm.isAnnotationPresent(GunHttpMapping.class)) {
+                    um.put(hm.isAnnotationPresent(GunHttpBaseContent.class) ? hm.getAnnotation(GunHttpBaseContent.class).baseContent() + hm.getAnnotation(GunHttpMapping.class).mappingRule()
+                            : hm.getAnnotation(GunHttpMapping.class).mappingRule(), hm.getDeclaredConstructor().newInstance());
                 }
 
             } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
