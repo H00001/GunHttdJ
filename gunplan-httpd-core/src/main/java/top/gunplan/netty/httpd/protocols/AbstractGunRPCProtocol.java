@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.Stack;
 
 /**
- *
+ * AbstractGunRPCProtocol
  */
-public abstract class AbstractGunRPCProtocl implements GunNetInBoundOutBound {
+public abstract class AbstractGunRPCProtocol implements GunNetInBoundOutBound {
 //    @Test
 //    public void test() {
 //        AbstractGunRPCProtocl it = new AbstractGunRPCProtocl();
@@ -26,40 +26,36 @@ public abstract class AbstractGunRPCProtocl implements GunNetInBoundOutBound {
 //    }
 
     // type 2 method 2 interfaceNamelen 1 interfacename ? methodNamelen 1 methodNamel? paramlen 1 end 2
-    RPCProtoclType type;
-    RPCProtoclCode code;
+    RPCProtocolType type;
+    RPCProtocolCode code;
     Object[] parameters;
 
     Stack<Serializable> param = new Stack<>();
+    byte[] endFlags = {0x0a, 0x05};
 
-
-    public RPCProtoclType getType() {
+    public RPCProtocolType getType() {
         return type;
     }
 
-    public void setType(RPCProtoclType type) {
+    public void setType(RPCProtocolType type) {
         this.type = type;
     }
 
-    public RPCProtoclCode getCode() {
+    public RPCProtocolCode getCode() {
         return code;
     }
 
-    public void setCode(RPCProtoclCode code) {
+    public void setCode(RPCProtocolCode code) {
         this.code = code;
     }
 
-
-    byte[] endFlage = {0x0a, 0x05};
-
-
     void writeOnceParam(GunBytesUtil.GunWriteByteStream util, Object parama) {
         if (parama instanceof Integer) {
-            util.writeByte(RPCProtoclParamType.INT.val);
+            util.writeByte(RPCProtocolParamType.INT.val);
             util.write32((Integer) parama);
 
         } else if (parama instanceof String) {
-            util.writeByte(RPCProtoclParamType.STRING.val);
+            util.writeByte(RPCProtocolParamType.STRING.val);
             util.writeByte((byte) ((String) parama).length());
             util.write((String) parama);
         }
@@ -67,7 +63,7 @@ public abstract class AbstractGunRPCProtocl implements GunNetInBoundOutBound {
     }
 
     Object readOnceParam(GunBytesUtil.GunReadByteStream util) {
-        RPCProtoclParamType ptypei = RPCProtoclParamType.valuefrom(util.readByte());
+        RPCProtocolParamType ptypei = RPCProtocolParamType.valueFrom(util.readByte());
         switch (ptypei) {
             case INT:
                 return util.readInt32();
@@ -89,12 +85,12 @@ public abstract class AbstractGunRPCProtocl implements GunNetInBoundOutBound {
 
     boolean checkEnd(GunBytesUtil.GunReadByteStream unserizutil) {
         byte[] end = unserizutil.readByte(2);
-        return GunBytesUtil.compareBytesFromEnd(end, endFlage[0], endFlage[1]);
+        return GunBytesUtil.compareBytesFromEnd(end, endFlags[0], endFlags[1]);
     }
 
     void publicUnSet(GunBytesUtil.GunReadByteStream unserizutil) {
-        this.type = RPCProtoclType.valuefrom(unserizutil.readInt());
-        this.code = RPCProtoclCode.valuefrom(unserizutil.readInt());
+        this.type = RPCProtocolType.valuefrom(unserizutil.readInt());
+        this.code = RPCProtocolCode.valueFrom(unserizutil.readInt());
     }
 
 

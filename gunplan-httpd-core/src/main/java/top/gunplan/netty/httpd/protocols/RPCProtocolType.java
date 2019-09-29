@@ -4,20 +4,20 @@ package top.gunplan.netty.httpd.protocols;
  * @author dosdrtt
  */
 
-public enum RPCProtoclType {
+public enum RPCProtocolType {
     /**
      *
      */
     REQUEST(0x0001), RESPONSE(0x0002);
     int value;
 
-    RPCProtoclType(int i) {
+    RPCProtocolType(int i) {
         this.value = i;
     }
 
-    public static RPCProtoclType valuefrom(int val) {
-        RPCProtoclType[] types = values();
-        for (RPCProtoclType tp : types) {
+    public static RPCProtocolType valuefrom(int val) {
+        RPCProtocolType[] types = values();
+        for (RPCProtocolType tp : types) {
             if (tp.value == val) {
                 return tp;
             }

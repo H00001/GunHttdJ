@@ -5,7 +5,7 @@ import top.gunplan.utils.GunBytesUtil;
 /**
  *
  */
-public class GunRPCOutputProtocl extends AbstractGunRPCProtocl {
+public class GunRPCOutputProtocl extends AbstractGunRPCProtocol {
     @Override
     public boolean unSerialize(byte[] in) {
         GunBytesUtil.GunReadByteStream util = new GunBytesUtil.GunReadByteStream(in);
@@ -32,7 +32,7 @@ public class GunRPCOutputProtocl extends AbstractGunRPCProtocl {
         GunBytesUtil.GunWriteByteStream serizUtil = new GunBytesUtil.GunWriteByteStream(serize);
         publicSet(serizUtil);
         writeOnceParam(serizUtil, returnValue);
-        serizUtil.write(endFlage);
+        serizUtil.write(endFlags);
         return serize;
     }
 }

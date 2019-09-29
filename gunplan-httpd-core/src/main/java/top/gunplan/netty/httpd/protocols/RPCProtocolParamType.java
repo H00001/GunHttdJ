@@ -1,19 +1,19 @@
 package top.gunplan.netty.httpd.protocols;
 
-public enum RPCProtoclParamType {
+public enum RPCProtocolParamType {
     /**
      *
      */
     INT((byte) 0x01), STRING((byte) 0x02),ERROR((byte)0x1c);
     byte val;
 
-    RPCProtoclParamType(byte val) {
+    RPCProtocolParamType(byte val) {
         this.val = val;
     }
 
-    public static RPCProtoclParamType valuefrom(byte val) {
-        RPCProtoclParamType[] types = values();
-        for (RPCProtoclParamType tp : types) {
+    public static RPCProtocolParamType valueFrom(byte val) {
+        RPCProtocolParamType[] types = values();
+        for (RPCProtocolParamType tp : types) {
             if (tp.val == val) {
                 return tp;
             }

@@ -5,7 +5,7 @@ import top.gunplan.utils.GunBytesUtil;
 /**
  *
  */
-public final class GunRPCInputProtocl extends AbstractGunRPCProtocl {
+public final class GunRPCInputProtocl extends AbstractGunRPCProtocol {
     private boolean analyizeParams(int paramlen, GunBytesUtil.GunReadByteStream util) {
         parameters = new Object[paramlen];
         for (int i = 0; i < paramlen; i++) {
@@ -37,7 +37,7 @@ public final class GunRPCInputProtocl extends AbstractGunRPCProtocl {
         serizUtil.write(methodName);
         serizUtil.writeByte(paramleng);
         writeParam(paramleng, serizUtil);
-        serizUtil.write(endFlage);
+        serizUtil.write(endFlags);
         return serize;
     }
 
