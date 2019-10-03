@@ -15,7 +15,7 @@ public abstract class BaseGunHttp2Response extends AbstractGunHttp2Response {
     protected BaseGunHttp2Response() {
         this.mmap.put("Server", "windows server iis 1998");
         this.mmap.put("Date", new Date().toString());
-        this.mmap.put("Connection", "keep-alive");
+        this.mmap.put("Connection", "closed");
         this.mmap.put("Accept-Ranges", "bytes");
         this.cookies.add(new GunHttpStdInfo.GunCookies("iisSession", UUID.randomUUID().toString()));
     }

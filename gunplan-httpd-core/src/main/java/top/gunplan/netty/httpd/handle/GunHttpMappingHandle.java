@@ -8,7 +8,6 @@ import top.gunplan.netty.protocol.GunNetOutbound;
 /**
  * @param <T> extends GunNetOutputInterface
  * @author dosdrtt
- * @see
  * @see GunNetInbound
  */
 public interface GunHttpMappingHandle<T extends GunNetOutbound> {

@@ -13,8 +13,7 @@ import java.util.Map;
  * * This util is used to format json string;
  *
  * @author frank albert
- * @ThreadNotSafe
- * @date 2019/05/22
+ * #date 2019/05/22
  */
 public class GunHttpdJsonBuilder implements GunHttpdJsonUtilInterface {
     private Map<String, Object> mmap = new HashMap<>();

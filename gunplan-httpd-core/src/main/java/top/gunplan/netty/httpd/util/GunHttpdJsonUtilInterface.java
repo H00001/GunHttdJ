@@ -5,9 +5,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author frank albert
- * @date 2019/05/28
- * @noConcurrent
- * @threadSafeInStack
+ * #date 2019/05/28
  */
 
 public interface GunHttpdJsonUtilInterface {

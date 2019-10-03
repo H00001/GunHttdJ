@@ -4,8 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author frank
- * @threadSafeWithLock
- * @date 2019/05/22
+ * #date 2019/05/22
  */
 
 public class GunHttpdJsonBuffer extends GunHttpdJsonBuilder {

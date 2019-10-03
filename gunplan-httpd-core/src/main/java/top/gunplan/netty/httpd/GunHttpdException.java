@@ -5,7 +5,7 @@ import top.gunplan.netty.GunExceptionType;
 
 /**
  * @author dosdrtt
- * @date 2019/05/09
+ * #date 2019/05/09
  * @see top.gunplan.netty.GunException
  */
 public class GunHttpdException extends GunException {

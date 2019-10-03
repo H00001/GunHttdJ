@@ -13,5 +13,11 @@
     <orderEntry type="library" name="Maven: top.gunplan:gunplan-netty:1.2.0.9" level="project" />
     <orderEntry type="library" name="Maven: top.gunplan:gunplan-netty-utils:1.2.0.7" level="project" />
     <orderEntry type="library" name="Maven: com.lmax:disruptor:3.4.2" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.5.2" level="project" />
   </component>
 </module>

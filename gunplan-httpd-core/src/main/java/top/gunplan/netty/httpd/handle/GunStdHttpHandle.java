@@ -4,7 +4,7 @@ package top.gunplan.netty.httpd.handle;
 import top.gunplan.netty.GunChannelException;
 import top.gunplan.netty.GunException;
 import top.gunplan.netty.GunNettyChildrenHandle;
-import top.gunplan.netty.GunNettySystemServices;
+import top.gunplan.netty.GunNettySystemService;
 import top.gunplan.netty.common.GunNettyContext;
 import top.gunplan.netty.common.GunNettyExecutors;
 import top.gunplan.netty.filter.GunNettyFilter;
@@ -46,7 +46,7 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
     private void scanLoop() throws IOException {
         URL url = this.getClass().getResource("");
         final URLClassLoader loader = new URLClassLoader(new URL[]{url});
-        final String handlePackName = GunNettySystemServices.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
+        final String handlePackName = GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
         List<GunDirectoryUtil.GunMappingFileReference> classfiles;
         try {
             classfiles = GunDirectoryUtil.scanAllFilesFromDirectory(loader.getResource("").getPath().replace("%20", " ") + handlePackName.replace(".", "/"), ".class");
