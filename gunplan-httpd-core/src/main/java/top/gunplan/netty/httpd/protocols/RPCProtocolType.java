@@ -2,8 +2,10 @@ package top.gunplan.netty.httpd.protocols;
 
 /**
  * @author dosdrtt
+ * @deprecated
  */
 
+@Deprecated
 public enum RPCProtocolType {
     /**
      *

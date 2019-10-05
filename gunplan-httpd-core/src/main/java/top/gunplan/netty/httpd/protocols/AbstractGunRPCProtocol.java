@@ -7,8 +7,10 @@ import java.io.Serializable;
 import java.util.Stack;
 
 /**
+ * @deprecated
  * AbstractGunRPCProtocol
  */
+@Deprecated
 public abstract class AbstractGunRPCProtocol implements GunNetInBoundOutBound {
 //    @Test
 //    public void test() {

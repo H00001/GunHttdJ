@@ -5,7 +5,7 @@ import top.gunplan.utils.GunBytesUtil;
 /**
  *
  */
-public class GunRPCOutputProtocl extends AbstractGunRPCProtocol {
+public class GunRPCOutputProtocol extends AbstractGunRPCProtocol {
     @Override
     public boolean unSerialize(byte[] in) {
         GunBytesUtil.GunReadByteStream util = new GunBytesUtil.GunReadByteStream(in);

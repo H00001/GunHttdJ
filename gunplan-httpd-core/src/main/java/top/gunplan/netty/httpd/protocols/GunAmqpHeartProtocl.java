@@ -1,5 +1,8 @@
 package top.gunplan.netty.httpd.protocols;
 
+/**
+ * @deprecated
+ */
 public class GunAmqpHeartProtocl extends AbstractGunAmqpProtocol {
     private byte[] prot = new byte[8];
 
