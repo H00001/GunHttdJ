@@ -25,8 +25,8 @@ public class AddPage implements GunHttpMappingHandle<GunNetOutbound> {
                 return "{\"status\":\"succeed\" }";
             }
         };
-        response.setProtocolType(GunHttpStdInfo.HttpProtoclType.HTTP1_1);
-        response.setContentType(GunHttpStdInfo.ContentType.TEXT_JSON);
+        response.setProtocolType(GunHttpStdInfo.HttpProtocolType.HTTP1_1);
+        response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.APPLICATION_JSON);
         return response;
     }
 }

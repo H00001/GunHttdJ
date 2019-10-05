@@ -22,8 +22,8 @@ public class ForbiddenMapping implements GunHttpMappingHandle<GunNetOutbound> {
             }
         };
         response.setCode(GunHttpStdInfo.statusCode.FORBIDDEN);
-        response.setProtocolType(GunHttpStdInfo.HttpProtoclType.HTTP2_0);
-        response.setContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
+        response.setProtocolType(GunHttpStdInfo.HttpProtocolType.HTTP2_0);
+        response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
         return response;
     }
 

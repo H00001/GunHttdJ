@@ -6,7 +6,7 @@ import top.gunplan.netty.protocol.GunNetOutbound;
 /**
  * @author dosdrtt
  */
-public abstract class AbstractGunAmqpProtocol implements BaseAmqp, GunNetInbound, GunNetOutbound {
+public abstract class AbstractGunAmqpProtocol implements GunNetInbound, GunNetOutbound {
     public enum Lengths {
         /**
          * type

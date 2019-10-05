@@ -13,7 +13,6 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author dosdrtt
- * @demo
  */
 @GunHttpMapping(mappingRule = "/getBooks.gmh")
 public class GetBooks implements GunHttpMappingHandle<GunNetOutbound> {
@@ -21,7 +20,6 @@ public class GetBooks implements GunHttpMappingHandle<GunNetOutbound> {
     @Override
     public GunNetOutbound doOutput(GunHttp2InputProtocol protocol) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
-
             @Override
             public String toResponse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
                 GunHttpdJsonUtilInterface ifc = GunHttpdJsonUtilFactory.newBzJsonUtil();
@@ -29,7 +27,7 @@ public class GetBooks implements GunHttpMappingHandle<GunNetOutbound> {
                 return ifc.formatToString();
             }
         };
-        response.setContentType(GunHttpStdInfo.ContentType.TEXT_JSON);
+        response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.TEXT_JSON);
         return response;
     }
 }

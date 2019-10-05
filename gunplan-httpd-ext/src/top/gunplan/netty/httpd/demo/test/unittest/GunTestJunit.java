@@ -2,7 +2,7 @@ package top.gunplan.netty.httpd.demo.test.unittest;
 
 
 import top.gunplan.netty.GunBootServer;
-import top.gunplan.netty.GunNettySystemServices;
+import top.gunplan.netty.GunNettySystemService;
 import top.gunplan.netty.httpd.GunHttpdObserve;
 import top.gunplan.netty.httpd.filter.GunStdHttp2Filter;
 import top.gunplan.netty.httpd.handle.GunStdHttpHandle;
@@ -20,14 +20,16 @@ public class GunTestJunit {
 
     public static void main(String[] args) {
 
-        GunNettySystemServices.PROPERTY_MANAGER.setStrategy(new GunGetPropertyFromBaseFile());
-        GunNettySystemServices.PROPERTY_MANAGER.registerProperty(new GunHttpProperty());
+        GunNettySystemService.PROPERTY_MANAGER.setStrategy(new GunGetPropertyFromBaseFile());
+        GunNettySystemService.PROPERTY_MANAGER.registerProperty(new GunHttpProperty());
         GunBootServer server = GunBootServerFactory.newInstance();
-        server.setExecutors(100, 100)
+        server.useStealMode(false).
+                setExecutors(1, 10)
                 .registerObserve(new GunHttpdObserve())
                 .onHasChannel(ch -> ch
                         .addDataFilter(new GunNettyStdFirstFilter())
                         .addDataFilter(new GunStdHttp2Filter())
+                        // .addDataFilter(new StressTestOutputFilter())
                         .setHandle(new GunStdHttpHandle())
                 );
         try {
@@ -38,6 +40,4 @@ public class GunTestJunit {
         }
         System.out.println("waiting");
     }
-
-
 }

@@ -27,9 +27,9 @@ public class NotFoundPage implements GunHttpMappingHandle<AbstractGunHttp2Respon
                         "</html>";
             }
         };
-        response.setProtocolType(GunHttpStdInfo.HttpProtoclType.HTTP1_1);
-        response.setContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
-        response.setCode(GunHttpStdInfo.statusCode.CLIENT_ERROR);
+        response.setProtocolType(GunHttpStdInfo.HttpProtocolType.HTTP1_1);
+        response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
+        response.setCode(GunHttpStdInfo.statusCode.NOT_FOUND);
         return response;
     }
 }
