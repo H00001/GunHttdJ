@@ -89,14 +89,14 @@ public final class GunHttpStdInfo {
         }
     }
 
-    public enum HttpProtoclType {
+    public enum HttpProtocolType {
         /**
          *
          */
         HTTP1_1("HTTP/1.1"), HTTP2_0("HTTP/2.0");
         private String val;
 
-        HttpProtoclType(String val) {
+        HttpProtocolType(String val) {
             this.val = val;
         }
 
