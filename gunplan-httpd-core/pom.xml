@@ -30,6 +30,16 @@
                 </includes>
             </resource>
         </resources>
+        <testResources>
+            <testResource>
+                <directory>src/tes-res</directory>
+                <includes>
+                    <include>
+                        **/*.*
+                    </include>
+                </includes>
+            </testResource>
+        </testResources>
 
         <plugins>
             <plugin>
