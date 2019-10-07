@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.gunplan</groupId>
-    <artifactId>gunplan-httpj-core</artifactId>
+    <artifactId>gunplan-httpj</artifactId>
     <version>1.1-SNAPSHOT</version>
 
 
@@ -20,6 +20,16 @@
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/res</directory>
+                <includes>
+                    <include>
+                        **/*.*
+                    </include>
+                </includes>
+            </resource>
+        </resources>
 
         <plugins>
             <plugin>
