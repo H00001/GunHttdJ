@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * GunHttpdRefToJsonInfo
+ * GunHttpRefToJsonInfo
+ *
+ * @author frank
  */
 @Target(value = ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

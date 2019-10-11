@@ -47,13 +47,13 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
         URL url = this.getClass().getResource("");
         final URLClassLoader loader = new URLClassLoader(new URL[]{url});
         final String handlePackName = GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
-        List<GunDirectoryUtil.GunMappingFileReference> classfiles;
+        List<GunDirectoryUtil.GunMappingFileReference> classFiles;
         try {
-            classfiles = GunDirectoryUtil.scanAllFilesFromDirectory(loader.getResource("").getPath().replace("%20", " ") + handlePackName.replace(".", "/"), ".class");
+            classFiles = GunDirectoryUtil.scanAllFilesFromDirectory(loader.getResource("").getPath().replace("%20", " ") + handlePackName.replace(".", "/"), ".class");
         } catch (IOException e) {
             throw new GunHttpdException("please check the packet path is true " + handlePackName);
         }
-        classfiles.parallelStream().forEach(classname -> {
+        classFiles.parallelStream().forEach(classname -> {
             Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>> hm;
             try {
                 /**
