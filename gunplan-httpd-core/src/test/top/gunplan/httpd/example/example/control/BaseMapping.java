@@ -28,14 +28,13 @@ public class BaseMapping implements GunHttpMappingHandle<GunNetOutbound> {
                         "</head>" +
                         "<body>" +
                         "<h1>this is a web server by GunNetty</h1>" +
-                        "<p>get start <a href=\"http://netty.gunplan.top\">download</a></p>" +
+                        "<p>get start <a href=\"http://h00001.github.io\">download</a></p>" +
                         "</body>" +
                         "</html>";
             }
         };
         response.setProtocolType(GunHttpStdInfo.HttpProtocolType.HTTP1_1);
         response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
-
         return response;
         // return (;
     }

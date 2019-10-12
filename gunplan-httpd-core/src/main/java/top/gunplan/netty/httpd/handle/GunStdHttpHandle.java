@@ -116,11 +116,7 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
                 throw new GunHttpdException("404 or 404 pages not found");
             }
         }
-        try {
-            return dealHandel;
-        } catch (Exception e) {
-            throw new GunException(e);
-        }
+        return dealHandel;
     }
 
 

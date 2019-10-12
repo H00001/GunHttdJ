@@ -11,7 +11,8 @@ import top.gunplan.netty.protocol.GunNetOutbound;
 import java.net.SocketAddress;
 
 /**
- * GunOutputHandle
+ * GunOutputHandled
+ * @author frank
  */
 public class GunOutputHandle implements GunNettyChildrenHandle {
 
