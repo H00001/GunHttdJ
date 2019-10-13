@@ -12,8 +12,7 @@ import java.lang.annotation.Target;
  */
 @Target(value = ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface GunHttpdRefToJsonInfo {
+public @interface GunHttpRefToJsonInfo {
     boolean canToJson();
-
     String jsonKey() default "";
 }

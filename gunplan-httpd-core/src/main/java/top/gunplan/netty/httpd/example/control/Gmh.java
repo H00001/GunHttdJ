@@ -1,4 +1,4 @@
-package top.gunplan.httpd.example.example.control;
+package top.gunplan.netty.httpd.example.control;
 
 import top.gunplan.netty.httpd.anno.GunHttpRefToJsonInfo;
 import top.gunplan.netty.httpd.util.GunHttpdObjectCanRefToJson;

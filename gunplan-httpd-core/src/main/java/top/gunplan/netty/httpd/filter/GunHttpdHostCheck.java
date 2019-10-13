@@ -22,7 +22,10 @@ public class GunHttpdHostCheck implements GunNettyInboundFilter {
     @Override
     public DealResult doInputFilter(GunInboundChecker inboundChecker) throws GunChannelException {
         GunHttp2InputProtocol httpMessage = (GunHttp2InputProtocol) inboundChecker.transferTarget();
-        return httpMessage.getRequestHead().get("Host").equals((GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class)).getHttpHost()) ?
-                DealResult.NEXT : DealResult.CLOSED;
+        if (httpMessage.getRequestHead().get("Host").equals((GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class)).getHttpHost())) {
+            return DealResult.NEXT;
+        } else {
+            return inboundChecker.channel().generalClose();
+        }
     }
 }

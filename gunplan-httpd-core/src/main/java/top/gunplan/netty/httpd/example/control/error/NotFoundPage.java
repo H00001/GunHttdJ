@@ -1,24 +1,18 @@
-package top.gunplan.httpd.example.example.control;
+package top.gunplan.netty.httpd.example.control.error;
+
 
 import top.gunplan.netty.httpd.anno.GunHttpMapping;
 import top.gunplan.netty.httpd.handle.GunHttpMappingHandle;
+import top.gunplan.netty.httpd.protocols.AbstractGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.BaseGunHttp2Response;
 import top.gunplan.netty.httpd.protocols.GunHttp2InputProtocol;
 import top.gunplan.netty.httpd.protocols.GunHttpStdInfo;
-import top.gunplan.netty.protocol.GunNetOutbound;
 
-
-/**
- * @author dosdrtt
- */
-@GunHttpMapping(mappingRule = "/index.aspx")
-public class BaseMapping implements GunHttpMappingHandle<GunNetOutbound> {
-    public BaseMapping() {
-
-    }
+@GunHttpMapping(mappingRule = "/*")
+public class NotFoundPage implements GunHttpMappingHandle<AbstractGunHttp2Response> {
 
     @Override
-    public GunNetOutbound doOutput(GunHttp2InputProtocol protocol) {
+    public AbstractGunHttp2Response doOutput(GunHttp2InputProtocol protocol) {
         BaseGunHttp2Response response = new BaseGunHttp2Response() {
             @Override
             public String toResponse() {
@@ -27,15 +21,15 @@ public class BaseMapping implements GunHttpMappingHandle<GunNetOutbound> {
                         "<head>" +
                         "</head>" +
                         "<body>" +
-                        "<h1>this is a web server by GunHttpJ</h1>" +
-                        "<p>get start <a href=\"http://h00001.github.io\">download</a></p>" +
+                        "<h1>love mcw</h1>" +
+                        "" +
                         "</body>" +
                         "</html>";
             }
         };
         response.setProtocolType(GunHttpStdInfo.HttpProtocolType.HTTP1_1);
         response.getHeaderBuilder().withContentType(GunHttpStdInfo.ContentType.TEXT_HTML);
+        response.setCode(GunHttpStdInfo.statusCode.NOT_FOUND);
         return response;
-        // return (;
     }
 }

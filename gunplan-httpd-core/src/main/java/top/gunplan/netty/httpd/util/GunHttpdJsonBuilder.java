@@ -1,6 +1,6 @@
 package top.gunplan.netty.httpd.util;
 
-import top.gunplan.netty.httpd.anno.GunHttpdRefToJsonInfo;
+import top.gunplan.netty.httpd.anno.GunHttpRefToJsonInfo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -54,7 +54,7 @@ public class GunHttpdJsonBuilder implements GunHttpdJsonUtilInterface {
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
-            GunHttpdRefToJsonInfo info = field.getAnnotation(GunHttpdRefToJsonInfo.class);
+            GunHttpRefToJsonInfo info = field.getAnnotation(GunHttpRefToJsonInfo.class);
             if (info != null && info.canToJson()) {
                 this.put(info.jsonKey().length() != 0 ? info.jsonKey() : field.getName(), field.get(object));
             }
