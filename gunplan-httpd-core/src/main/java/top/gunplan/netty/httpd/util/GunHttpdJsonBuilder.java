@@ -62,7 +62,7 @@ public class GunHttpdJsonBuilder implements GunHttpdJsonUtilInterface {
         return formatToString();
     }
 
-    private String serizList(List list) throws InvocationTargetException, IllegalAccessException {
+    private String sarisList(List list) throws InvocationTargetException, IllegalAccessException {
         StringBuilder builder = new StringBuilder("[");
         for (Object o : list) {
             if (o instanceof String) {
@@ -78,7 +78,7 @@ public class GunHttpdJsonBuilder implements GunHttpdJsonUtilInterface {
 
     private void readInvoke(StringBuilder builder, Object o) throws InvocationTargetException, IllegalAccessException {
         if (o instanceof List) {
-            builder.append(serizList((List) o)).append(",");
+            builder.append(sarisList((List) o)).append(",");
         } else if (o instanceof GunHttpdJsonUtilInterface) {
             builder.append(((GunHttpdJsonUtilInterface) o).formatToString());
         } else {

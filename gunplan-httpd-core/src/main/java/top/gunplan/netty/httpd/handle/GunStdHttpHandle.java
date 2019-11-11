@@ -37,15 +37,16 @@ import java.util.concurrent.TimeUnit;
  * @author dosdrtt
  */
 
-public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
+public class GunStdHttpHandle implements GunNettyChildrenHandle {
     private static final GunLogger LOG = GunNettyContext.logger;
-    private static final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> um = new ConcurrentHashMap<>();
+    private static final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> UM = new ConcurrentHashMap<>();
     private final ScheduledExecutorService ses = GunNettyExecutors.newScheduleExecutorPool(1);
 
     @SuppressWarnings("unchecked")
     private void scanLoop() throws IOException {
         URL url = this.getClass().getResource("");
         final URLClassLoader loader = new URLClassLoader(new URL[]{url});
+
         final String handlePackName = GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
         List<GunDirectoryUtil.GunMappingFileReference> classFiles;
         try {
@@ -61,7 +62,7 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
                  */
                 hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(handlePackName + classname.getBase() + classname.getClcasfile().getName().replace(".class", ""));
                 if (hm.isAnnotationPresent(GunHttpMapping.class)) {
-                    um.put(hm.isAnnotationPresent(GunHttpBaseContent.class) ? hm.getAnnotation(GunHttpBaseContent.class).baseContent() + hm.getAnnotation(GunHttpMapping.class).mappingRule()
+                    UM.put(hm.isAnnotationPresent(GunHttpBaseContent.class) ? hm.getAnnotation(GunHttpBaseContent.class).baseContent() + hm.getAnnotation(GunHttpMapping.class).mappingRule()
                             : hm.getAnnotation(GunHttpMapping.class).mappingRule(), hm.getDeclaredConstructor().newInstance());
                 }
 
@@ -74,14 +75,14 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
 
     }
 
-    @Override
-    public int init() {
-        ses.scheduleAtFixedRate(this, 1000, 1000, TimeUnit.MILLISECONDS);
+    public int ginit() {
         try {
             scanLoop();
         } catch (Exception e) {
             LOG.error(e);
+            return -1;
         }
+        ses.scheduleAtFixedRate(this::run, 1000, 1000, TimeUnit.MILLISECONDS);
         return 0;
     }
 
@@ -104,14 +105,14 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
     }
 
     private GunHttpMappingHandle<AbstractGunHttp2Response> findHandleRun(String requestUrl) throws GunException {
-        GunHttpMappingHandle<AbstractGunHttp2Response> dealHandel = um.get(requestUrl);
+        GunHttpMappingHandle<AbstractGunHttp2Response> dealHandel = UM.get(requestUrl);
         GunHttpMappingHandle<AbstractGunHttp2Response> instance0;
         while (dealHandel == null) {
             requestUrl = GunStringUtil.removeLastUrl(requestUrl);
-            if ((instance0 = um.get(requestUrl + "*")) != null) {
+            if ((instance0 = UM.get(requestUrl + "*")) != null) {
                 return instance0;
             }
-            dealHandel = um.get(requestUrl + "*");
+            dealHandel = UM.get(requestUrl + "*");
             if ("/".equals(requestUrl) && dealHandel == null) {
                 throw new GunHttpdException("404 or 404 pages not found");
             }
@@ -131,8 +132,7 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle, Runnable {
     }
 
 
-    @Override
-    public void run() {
+    private void run() {
         try {
             scanLoop();
         } catch (IOException e) {
