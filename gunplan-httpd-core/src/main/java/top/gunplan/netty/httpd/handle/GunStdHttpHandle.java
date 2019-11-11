@@ -21,7 +21,6 @@ import top.gunplan.utils.GunLogger;
 import top.gunplan.utils.GunStringUtil;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.SocketAddress;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -41,12 +40,11 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle {
     private static final GunLogger LOG = GunNettyContext.logger;
     private static final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> UM = new ConcurrentHashMap<>();
     private final ScheduledExecutorService ses = GunNettyExecutors.newScheduleExecutorPool(1);
+    private URL url = this.getClass().getResource("");
 
     @SuppressWarnings("unchecked")
     private void scanLoop() throws IOException {
-        URL url = this.getClass().getResource("");
         final URLClassLoader loader = new URLClassLoader(new URL[]{url});
-
         final String handlePackName = GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
         List<GunDirectoryUtil.GunMappingFileReference> classFiles;
         try {
@@ -54,19 +52,20 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle {
         } catch (IOException e) {
             throw new GunHttpdException("please check the packet path is true " + handlePackName);
         }
-        classFiles.parallelStream().forEach(classname -> {
+        classFiles.parallelStream().map(baseName -> handlePackName + baseName.getBase() + baseName.getClcasfile().getName().replace(".class", ""))
+                .filter(who -> !who.contains("$")).forEach(classname -> {
             Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>> hm;
             try {
-                /**
+                /*
                  * warning：It could be inside class in Mapping class with out GunHttp mapping Annotation
                  */
-                hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(handlePackName + classname.getBase() + classname.getClcasfile().getName().replace(".class", ""));
+                hm = (Class<? extends GunHttpMappingHandle<AbstractGunHttp2Response>>) loader.loadClass(classname);
                 if (hm.isAnnotationPresent(GunHttpMapping.class)) {
                     UM.put(hm.isAnnotationPresent(GunHttpBaseContent.class) ? hm.getAnnotation(GunHttpBaseContent.class).baseContent() + hm.getAnnotation(GunHttpMapping.class).mappingRule()
                             : hm.getAnnotation(GunHttpMapping.class).mappingRule(), hm.getDeclaredConstructor().newInstance());
                 }
 
-            } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+            } catch (ReflectiveOperationException e) {
                 throw new GunHttpdException(e);
             }
 
