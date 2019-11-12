@@ -37,10 +37,10 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class GunStdHttpHandle implements GunNettyChildrenHandle {
-    private static final GunLogger LOG = GunNettyContext.logger;
+    private static final GunLogger LOG = GunNettyContext.logger.setTAG(GunStdHttpHandle.class);
     private static final Map<String, GunHttpMappingHandle<AbstractGunHttp2Response>> UM = new ConcurrentHashMap<>();
     private final ScheduledExecutorService ses = GunNettyExecutors.newScheduleExecutorPool(1);
-    private URL url = this.getClass().getResource("");
+    private URL url = this.getClass().getClassLoader().getResource("");
 
     @SuppressWarnings("unchecked")
     private void scanLoop() throws IOException {
@@ -48,9 +48,9 @@ public class GunStdHttpHandle implements GunNettyChildrenHandle {
         final String handlePackName = GunNettySystemService.PROPERTY_MANAGER.acquireProperty(GunHttpProperty.class).getScanPacket();
         List<GunDirectoryUtil.GunMappingFileReference> classFiles;
         try {
-            classFiles = GunDirectoryUtil.scanAllFilesFromDirectory(loader.getResource("").getPath().replace("%20", " ") + handlePackName.replace(".", "/"), ".class");
+            classFiles = GunDirectoryUtil.scanAllFilesFromDirectory(url.getPath() + handlePackName.replace(".", "/"), ".class");
         } catch (IOException e) {
-            throw new GunHttpdException("please check the packet path is true " + handlePackName);
+            throw new GunHttpdException("please check the packet path is true :" + handlePackName);
         }
         classFiles.parallelStream().map(baseName -> handlePackName + baseName.getBase() + baseName.getClcasfile().getName().replace(".class", ""))
                 .filter(who -> !who.contains("$")).forEach(classname -> {

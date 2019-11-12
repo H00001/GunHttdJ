@@ -37,11 +37,10 @@ public class GunTestJunit {
             server.setSyncType(true);
             int val = server.sync();
             if ((val | GunServerStateManager.GunNettyWorkState.BOOT_ERROR_2.state) != 0) {
-                server.stop();
+                System.err.println("BOOT FAIL");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("waiting");
     }
 }
