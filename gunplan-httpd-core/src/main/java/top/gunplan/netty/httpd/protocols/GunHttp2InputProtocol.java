@@ -81,8 +81,10 @@ final public class GunHttp2InputProtocol implements GunNetInbound {
             if (this.method == GunHttpStdInfo.GunHttpRequestType.POST) {
                 functionToDealPostMethod(httpContent.substring(spiltPoint + 4));
             }
+
             return true;
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             return false;
         }
 

@@ -5,6 +5,7 @@ import top.gunplan.netty.GunBootServer;
 import top.gunplan.netty.GunNettySystemService;
 import top.gunplan.netty.GunServerStateManager;
 import top.gunplan.netty.httpd.filter.GunStdHttp2Filter;
+import top.gunplan.netty.httpd.filter.GunStdMethodChecker;
 import top.gunplan.netty.httpd.handle.GunStdHttpHandle;
 import top.gunplan.netty.httpd.property.GunHttpProperty;
 import top.gunplan.netty.impl.GunBootServerFactory;
@@ -26,10 +27,11 @@ public class GunTestJunit {
 
         server.registerObserve(new top.gunplan.netty.httpd.example.unittest.GunHttpdObserve());
         server.useStealMode(false).
-                setExecutors(1, 10)
+                setExecutors(100, 100)
                 .onHasChannel(ch -> ch
                         .addDataFilter(new GunNettyStdFirstFilter())
                         .addDataFilter(new GunStdHttp2Filter())
+                        .addDataFilter(new GunStdMethodChecker())
                         //  .addDataFilter(new StressTestOutputFilter())
                         .setHandle(new GunStdHttpHandle())
                 );

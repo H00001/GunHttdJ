@@ -1,0 +1,50 @@
+[1573627763701] [   INFO] [GunNettyPropertyExporter] acquire configure from :https://p.gunplan.top/static/http_conf.html
+[1573627764496] [   INFO] [PROPERTY][GunNettyPropertyExporter]  port:8822
+[1573627764498] [   INFO] [PROPERTY][GunNettyPropertyExporter]  clientWaitTime:5000
+[1573627764498] [   INFO] [PROPERTY][GunNettyPropertyExporter]  fileReadBufferMin:512
+[1573627764498] [   INFO] [PROPERTY][GunNettyPropertyExporter]  profileName:banner.txt
+[1573627764498] [   INFO] [PROPERTY][GunNettyPropertyExporter]  initWait:1000
+[1573627764498] [   INFO] [PROPERTY][GunNettyPropertyExporter]  minInterval:100
+[1573627764499] [   INFO] [PROPERTY][GunNettyPropertyExporter]  outputlevel:0
+[1573627764500] [   INFO] [PROPERTY][GunNettyPropertyExporter]  direct:"console"
+[1573627764500] [   INFO] [PROPERTY][GunNettyPropertyExporter]  format:YYYY-MM-dd_HH:mm:ss
+[1573627764500] [   INFO] [GunNettyPropertyExporter] Check parameters succeed
+[2019-11-13_14:49:24] [   INFO] [PROPERTY][GunNettyPropertyExporter]  scannPacket:top.gunplan.netty.httpd.example.control
+[2019-11-13_14:49:24] [   INFO] [PROPERTY][GunNettyPropertyExporter]  httpHost:localhost.gunplan.top
+[2019-11-13_14:49:24] [   INFO] [SystemChannelChangedHandle] server running on :[8822]
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.impl.GunNettyStdFirstFilter@4ccab53d
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.impl.GunNettyStdFirstFilter@2b97da9c
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdHttp2Filter@700edaad
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdHttp2Filter@48365af3
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdMethodChecker@454c55fc
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdMethodChecker@1550a736
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] child handle has been added:top.gunplan.netty.httpd.handle.GunStdHttpHandle@26a3c748
+[2019-11-13_14:49:32] [   INFO] [GunStdHttpHandle] child handle has been added:top.gunplan.netty.httpd.handle.GunStdHttpHandle@4dc43d48
+[2019-11-13_14:49:32] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:49:33] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:49:33] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:49:34] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:49:34] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:00] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.impl.GunNettyStdFirstFilter@3dc1769d
+[2019-11-13_14:50:00] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdHttp2Filter@33069f55
+[2019-11-13_14:50:00] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdMethodChecker@37391ded
+[2019-11-13_14:50:00] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:00] [   INFO] [GunStdHttpHandle] child handle has been added:top.gunplan.netty.httpd.handle.GunStdHttpHandle@723b956e
+[2019-11-13_14:50:00] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:00] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:01] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:01] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:01] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_14:50:04] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.impl.GunNettyStdFirstFilter@49f0e4b1
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.impl.GunNettyStdFirstFilter@5298e561
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdHttp2Filter@473713ff
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdHttp2Filter@5c5f1142
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdMethodChecker@58608e11
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] filter has been added:top.gunplan.netty.httpd.filter.GunStdMethodChecker@43088fc1
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] child handle has been added:top.gunplan.netty.httpd.handle.GunStdHttpHandle@1d621b79
+[2019-11-13_20:57:21] [   INFO] [GunStdHttpHandle] child handle has been added:top.gunplan.netty.httpd.handle.GunStdHttpHandle@60a19c4
+[2019-11-13_20:57:21] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_20:57:22] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_20:57:22] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
+[2019-11-13_20:57:22] [  DEBUG] [CONNECTION][HTTP][GunStdHttpHandle]  request:/index.aspx
